@@ -1,0 +1,73 @@
+[gd_resource type="Shader" format=3 uid="uid://m1xem6nhbnq6"]
+
+[resource]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_toon, specular_schlick_ggx, ambient_light_disabled;
+
+uniform vec4 albedoR : source_color;
+uniform vec4 albedoG : source_color;
+uniform vec4 albedoBlack : source_color;
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform sampler2D texture_emission : source_color, hint_default_black, filter_linear_mipmap, repeat_enable;
+uniform vec4 emission : source_color;
+uniform float emission_energy : hint_range(0.0, 100.0, 0.01);
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+uniform float dress_widen_amount : hint_range(0.0, 1.0, 0.01) = 0.0;
+uniform sampler2D texture_position : source_color;
+uniform float pos_angle_offset: hint_range(0.0, 1.0, 0.01) = 0.0;
+uniform sampler2D dress_affect_curve : repeat_disable;
+uniform float vertex_scale_factor: hint_range(0.0, 1.0, 0.01) = 1.0;
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+	
+	vec4 point = texture(texture_position, UV);
+	float height = clamp(1.0-point.y, 0, 1);
+	float angle = (point.x + pos_angle_offset) * PI * 2.0;
+	
+	float impact = texture(dress_affect_curve, vec2(height, 0.0)).r;
+	float expand = dress_widen_amount*(2.0 + .2*sin(angle*3.0+TIME*5.0));
+	
+	vec2 dir = vec2(cos(-angle), sin(-angle));//normalize(vec2(VERTEX.x, VERTEX.z));
+	float vertex_scale_factor_applied = ((1.0 - impact) + impact*vertex_scale_factor);
+	VERTEX = vec3(VERTEX.x * vertex_scale_factor_applied + impact*expand*dir.x, VERTEX.y * vertex_scale_factor_applied + (2.0 + impact*-2.0)*(1.0-vertex_scale_factor_applied), VERTEX.z * vertex_scale_factor_applied + impact*expand*dir.y);
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+
+	vec3 alb = albedo_tex.rgb;
+	ALBEDO = mix(mix(albedoBlack, albedoR, alb.r), albedoG, alb.g).rgb;
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+
+	// Emission: Enabled
+	vec3 emission_tex = texture(texture_emission, base_uv).rgb;
+	// Emission Operator: Add
+	EMISSION = (emission.rgb + emission_tex) * emission_energy;
+}
+"

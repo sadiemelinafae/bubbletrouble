@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://fxluae530yrf"]
+
+[resource]
+resource_name = "GlovesWhite"
+cull_mode = 2
+diffuse_mode = 3
+disable_ambient_light = true
+albedo_color = Color(0.753001, 0.654014, 0.631323, 1)
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color(0.558579, 0.34798, 0.261667, 1)

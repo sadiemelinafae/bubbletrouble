@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://cgr5de7j7m1ut"]
+
+[ext_resource type="Script" path="res://systems/game_state/game_state.gd" id="1_1t0jf"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_6rh4d"]
+[ext_resource type="Script" path="res://systems/game_state/game_state_pause_watcher.gd" id="2_yorry"]
+[ext_resource type="Script" path="res://systems/game_state/game_state_mouse_capture.gd" id="3_dh4nj"]
+[ext_resource type="PackedScene" uid="uid://bx4h55hymuec4" path="res://systems/menus/pause_menu_ui.tscn" id="4_gnyib"]
+[ext_resource type="Script" path="res://systems/game_state/game_state_pause_menu_toggle.gd" id="4_o5ocp"]
+[ext_resource type="PackedScene" uid="uid://d3bk3rl7ylg00" path="res://systems/menus/main_menu_ui.tscn" id="6_dvx6k"]
+
+[node name="GameState" type="Node3D"]
+script = ExtResource("1_1t0jf")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, -1.86265e-08, 0, 1.86265e-08, 1, 0, 0, 0)
+fov = 45.0
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("2_6rh4d")
+
+[node name="ShouldPauseWatcher" type="Node" parent="."]
+script = ExtResource("2_yorry")
+
+[node name="MouseCapture" type="Node" parent="."]
+script = ExtResource("3_dh4nj")
+
+[node name="ActiveMenuControl" type="Node" parent="." node_paths=PackedStringArray("pause_menu", "main_menu")]
+script = ExtResource("4_o5ocp")
+pause_menu = NodePath("PauseMenuUI")
+main_menu = NodePath("MainMenuUI")
+
+[node name="PauseMenuUI" parent="ActiveMenuControl" instance=ExtResource("4_gnyib")]
+
+[node name="MainMenuUI" parent="ActiveMenuControl" instance=ExtResource("6_dvx6k")]

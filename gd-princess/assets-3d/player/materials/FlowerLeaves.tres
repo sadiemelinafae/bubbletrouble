@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://okb0q14cwfdc"]
+
+[resource]
+resource_name = "FlowerLeaves"
+cull_mode = 2
+albedo_color = Color(0.155502, 0.907284, 0.672828, 1)

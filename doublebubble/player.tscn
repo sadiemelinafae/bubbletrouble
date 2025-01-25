@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpq82q1h8u5ti"]
+
+[ext_resource type="PackedScene" uid="uid://da6oi0mxl336x" path="res://princess.glb" id="1_jeefe"]
+[ext_resource type="Script" path="res://player.gd" id="1_t52d5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r3nht"]
+height = 3.0
+
+[node name="player" type="CharacterBody3D"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+script = ExtResource("1_t52d5")
+
+[node name="pivot" type="Node3D" parent="."]
+
+[node name="character" parent="pivot" instance=ExtResource("1_jeefe")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("CapsuleShape3D_r3nht")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.998761, -0.0154971, 0.0472797, 0, 0.950256, 0.31147, -0.0497547, 0.311085, -0.949079, 0, 3.817, -2.722)

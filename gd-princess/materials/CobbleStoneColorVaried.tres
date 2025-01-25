@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://odmvhlj6h8xu"]
+
+[ext_resource type="Shader" path="res://materials/_shaders/instance_color_varied.gdshader" id="1_ceug6"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ceug6")
+shader_parameter/A = Color(0.796078, 0.6, 0.439216, 1)
+shader_parameter/B = Color(0.261566, 0.0825863, 0.107092, 1)
+shader_parameter/multiply = Color(0.625025, 0.585029, 0.558177, 1)

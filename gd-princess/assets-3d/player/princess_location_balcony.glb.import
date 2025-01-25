@@ -1,0 +1,119 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://dqaaoo74sint3"
+path="res://.godot/imported/princess_location_balcony.glb-d6de9c5ed53a18f22e924ee9e5df8373.scn"
+
+[deps]
+
+source_file="res://assets-3d/player/princess_location_balcony.glb"
+dest_files=["res://.godot/imported/princess_location_balcony.glb-d6de9c5ed53a18f22e924ee9e5df8373.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=2
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"materials": {
+"BalconyRailingStone": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/balcony/BalconyRailingStone.tres"
+},
+"BenchWood": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/balcony/BenchWood.tres"
+},
+"BuildingBar": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/balcony/BuildingBar.tres"
+},
+"CastleTowerRoof": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/balcony/CastleTowerRoof.tres"
+},
+"CastleWall": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/balcony/CastleWall.tres"
+},
+"CastleWall.001": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/balcony/CastleWall.001.tres"
+},
+"CastleWallBricks": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/balcony/CastleWallBricks.tres"
+},
+"CastleWallBricksBrown": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/balcony/CastleWallBricksBrown.tres"
+},
+"CastleWallWindows": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/balcony/CastleWallWindows.tres"
+},
+"CushionSmall": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/balcony/CushionSmall.tres"
+},
+"GreenTree": {
+"use_external/enabled": false,
+"use_external/path": "res://materials/treeleaves/TreeLeaves3LightGreen.tres"
+},
+"Inside": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/balcony/Inside.tres"
+},
+"LanternGlow": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/balcony/LanternGlow.tres"
+},
+"LanternMetal": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/balcony/LanternMetal.tres"
+},
+"Leaves": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/treeleaves/TreeLeaves_yellow.tres"
+},
+"Roof": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/balcony/Roof.tres"
+},
+"RoofTile": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/balcony/RoofTile.tres"
+},
+"TerasseFloor": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/balcony/TerasseFloor.tres"
+},
+"TerrasseCobbles": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/balcony/TerrasseCobbles.tres"
+},
+"Wood": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/balcony/Wood.tres"
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

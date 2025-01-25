@@ -1,0 +1,872 @@
+[gd_scene load_steps=43 format=3 uid="uid://b28i48bhux1w2"]
+
+[ext_resource type="Script" path="res://systems/cinematics/cine_onload_trigger.gd" id="1_7l76o"]
+[ext_resource type="PackedScene" uid="uid://dqaaoo74sint3" path="res://assets-3d/player/princess_location_balcony.glb" id="1_tenyv"]
+[ext_resource type="Script" path="res://systems/menus/main_menu_cam.gd" id="2_36ksa"]
+[ext_resource type="PackedScene" uid="uid://bd5ndkjed58yh" path="res://prefabs/level_basics.tscn" id="2_rgytu"]
+[ext_resource type="LightmapGIData" uid="uid://buu7hdq24kfx" path="res://scenes/level_cine_balcony.lmbake" id="3_qj78i"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="4_pc7rb"]
+[ext_resource type="Texture2D" uid="uid://cqh6uq1yorwk3" path="res://assets/particles/Fuzz.png" id="5_j5pe1"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_ncm5q"]
+[ext_resource type="Resource" uid="uid://x2c800lqxxyt" path="res://assets/cinematic_camera_settings.tres" id="6_omv4m"]
+[ext_resource type="Script" path="res://systems/cinematics/cinematic.gd" id="7_adhuy"]
+[ext_resource type="PackedScene" uid="uid://do8oktmypbpo0" path="res://prefabs/player.tscn" id="7_rbl0w"]
+[ext_resource type="Script" path="res://systems/cinematics/cine_step.gd" id="8_65pa2"]
+[ext_resource type="Script" path="res://systems/cinematics/cine_action_animation.gd" id="8_f2gu0"]
+[ext_resource type="PackedScene" uid="uid://bqk2574egc4xe" path="res://assets-3d/player/princess_anims_cine_balcony_book.glb" id="8_ona14"]
+[ext_resource type="Script" path="res://systems/cinematics/cine_action_player.gd" id="9_oomph"]
+[ext_resource type="Script" path="res://systems/cinematics/cine_action_snap_player.gd" id="9_x1ovk"]
+[ext_resource type="Animation" uid="uid://hmb4p3s3ec03" path="res://assets-3d/player/animations_book/C_Book_Close.res" id="10_hn73a"]
+[ext_resource type="Script" path="res://systems/cinematics/cine_action_switch_camera.gd" id="15_bdqay"]
+[ext_resource type="Animation" uid="uid://bh6ulxlst3q40" path="res://assets-3d/player/animations_book/C_Book_PutDown.res" id="18_40lrd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2idcs"]
+sky_top_color = Color(0.176723, 0.490813, 0.59237, 1)
+sky_horizon_color = Color(0.412262, 0.725278, 0.64377, 1)
+ground_bottom_color = Color(0.810011, 0.715843, 0.556064, 1)
+
+[sub_resource type="Sky" id="Sky_iwksn"]
+sky_material = SubResource("ProceduralSkyMaterial_2idcs")
+
+[sub_resource type="Environment" id="Environment_pd35j"]
+background_mode = 2
+sky = SubResource("Sky_iwksn")
+ambient_light_source = 2
+ambient_light_color = Color(0.93845, 0.93845, 0.93845, 1)
+ssao_enabled = true
+ssao_radius = 1.94
+ssao_intensity = 1.47
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6oiyx"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("5_j5pe1")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_i4l2c"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.508475, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.101235, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_8omes"]
+curve = SubResource("Curve_i4l2c")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yfm3c"]
+emission_shape = 1
+emission_sphere_radius = 24.85
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.1
+color = Color(1, 1, 1, 0.258824)
+alpha_curve = SubResource("CurveTexture_8omes")
+turbulence_enabled = true
+turbulence_noise_strength = 0.3
+
+[sub_resource type="QuadMesh" id="QuadMesh_53jl1"]
+
+[sub_resource type="Resource" id="Resource_w64ln"]
+script = ExtResource("5_ncm5q")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="Resource" id="Resource_yl1hf"]
+script = ExtResource("5_ncm5q")
+duration = 5.0
+transition = 4
+ease = 1
+
+[sub_resource type="Resource" id="Resource_n2f1v"]
+script = ExtResource("5_ncm5q")
+duration = 0.0
+transition = 0
+ease = 2
+
+[sub_resource type="Animation" id="Animation_enl4x"]
+resource_name = "00_RESET"
+length = 0.0416667
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("OpenBookArmature/Skeleton3D:Root")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.0630212, -0.792049)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("OpenBookArmature/Skeleton3D:Root")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, -2.21972e-07, -2.21972e-07, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("OpenBookArmature/Skeleton3D:Spine1.R")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.625307, 0.330139, 0.330139, 0.625306)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = true
+tracks/3/enabled = true
+tracks/3/path = NodePath("OpenBookArmature/Skeleton3D:Spine2.R")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 7.95616e-07, -1.28052e-08, 0.170715, 0.985321)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = true
+tracks/4/enabled = true
+tracks/4/path = NodePath("OpenBookArmature/Skeleton3D:Spine3.R")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -1.58399e-07, -5.42833e-08, 0.110575, 0.993868)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = true
+tracks/5/enabled = true
+tracks/5/path = NodePath("OpenBookArmature/Skeleton3D:Spine1.L")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -0.625308, -0.33014, -0.330138, 0.625305)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = true
+tracks/6/enabled = true
+tracks/6/path = NodePath("OpenBookArmature/Skeleton3D:Spine2.L")
+tracks/6/interp = 0
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 7.02669e-07, 3.58742e-06, -0.170715, 0.985321)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = true
+tracks/7/enabled = true
+tracks/7/path = NodePath("OpenBookArmature/Skeleton3D:Spine3.L")
+tracks/7/interp = 0
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 1.70762e-07, -5.16583e-08, -0.110575, 0.993868)
+
+[sub_resource type="Animation" id="Animation_qbyfo"]
+resource_name = "C_Book_Reading"
+length = 0.0416667
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("OpenBookArmature/Skeleton3D:Root")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 26.3967, 8.4946, -18.3226)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("OpenBookArmature/Skeleton3D:Root")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.501043, 0.329056, -0.102116, 0.793883)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("OpenBookArmature/Skeleton3D:Spine1.R")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.614701, 0.351623, 0.351689, 0.612225)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = true
+tracks/3/enabled = true
+tracks/3/path = NodePath("OpenBookArmature/Skeleton3D:Spine2.R")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0.00391907, -0.00280968, 0.103358, 0.994633)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = true
+tracks/4/enabled = true
+tracks/4/path = NodePath("OpenBookArmature/Skeleton3D:Spine3.R")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0.00298009, -0.00364897, 0.0428172, 0.999072)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = true
+tracks/5/enabled = true
+tracks/5/path = NodePath("OpenBookArmature/Skeleton3D:Spine1.L")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -0.614702, -0.351624, -0.351687, 0.612224)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = true
+tracks/6/enabled = true
+tracks/6/path = NodePath("OpenBookArmature/Skeleton3D:Spine2.L")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 0.00391922, 0.00281325, -0.103358, 0.994633)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = true
+tracks/7/enabled = true
+tracks/7/path = NodePath("OpenBookArmature/Skeleton3D:Spine3.L")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0.00298042, 0.00364884, -0.0428172, 0.999072)
+
+[sub_resource type="Animation" id="Animation_owg24"]
+resource_name = "C_balcony_bird_look_base"
+length = 0.0416667
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("OpenBookArmature/Skeleton3D:Root")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.0630212, -0.792049)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("OpenBookArmature/Skeleton3D:Root")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, -2.21972e-07, -2.21972e-07, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("OpenBookArmature/Skeleton3D:Spine1.R")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.625307, 0.330139, 0.330139, 0.625306)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = true
+tracks/3/enabled = true
+tracks/3/path = NodePath("OpenBookArmature/Skeleton3D:Spine2.R")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 7.95616e-07, -1.28052e-08, 0.170715, 0.985321)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = true
+tracks/4/enabled = true
+tracks/4/path = NodePath("OpenBookArmature/Skeleton3D:Spine3.R")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -1.58399e-07, -5.42833e-08, 0.110575, 0.993868)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = true
+tracks/5/enabled = true
+tracks/5/path = NodePath("OpenBookArmature/Skeleton3D:Spine1.L")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -0.625308, -0.33014, -0.330138, 0.625305)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = true
+tracks/6/enabled = true
+tracks/6/path = NodePath("OpenBookArmature/Skeleton3D:Spine2.L")
+tracks/6/interp = 0
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 7.02669e-07, 3.58742e-06, -0.170715, 0.985321)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = true
+tracks/7/enabled = true
+tracks/7/path = NodePath("OpenBookArmature/Skeleton3D:Spine3.L")
+tracks/7/interp = 0
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 1.70762e-07, -5.16583e-08, -0.110575, 0.993868)
+
+[sub_resource type="Animation" id="Animation_21q8c"]
+resource_name = "C_balcony_bird_look_down"
+length = 0.0416667
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("OpenBookArmature/Skeleton3D:Root")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.0630212, -0.792049)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("OpenBookArmature/Skeleton3D:Root")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, -2.21972e-07, -2.21972e-07, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("OpenBookArmature/Skeleton3D:Spine1.R")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.625307, 0.330139, 0.330139, 0.625306)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = true
+tracks/3/enabled = true
+tracks/3/path = NodePath("OpenBookArmature/Skeleton3D:Spine2.R")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 7.95616e-07, -1.28052e-08, 0.170715, 0.985321)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = true
+tracks/4/enabled = true
+tracks/4/path = NodePath("OpenBookArmature/Skeleton3D:Spine3.R")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -1.58399e-07, -5.42833e-08, 0.110575, 0.993868)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = true
+tracks/5/enabled = true
+tracks/5/path = NodePath("OpenBookArmature/Skeleton3D:Spine1.L")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -0.625308, -0.33014, -0.330138, 0.625305)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = true
+tracks/6/enabled = true
+tracks/6/path = NodePath("OpenBookArmature/Skeleton3D:Spine2.L")
+tracks/6/interp = 0
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 7.02669e-07, 3.58742e-06, -0.170715, 0.985321)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = true
+tracks/7/enabled = true
+tracks/7/path = NodePath("OpenBookArmature/Skeleton3D:Spine3.L")
+tracks/7/interp = 0
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 1.70762e-07, -5.16583e-08, -0.110575, 0.993868)
+
+[sub_resource type="Animation" id="Animation_232hg"]
+resource_name = "C_balcony_bird_look_left"
+length = 0.0416667
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("OpenBookArmature/Skeleton3D:Root")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.0630212, -0.792049)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("OpenBookArmature/Skeleton3D:Root")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, -2.21972e-07, -2.21972e-07, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("OpenBookArmature/Skeleton3D:Spine1.R")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.625307, 0.330139, 0.330139, 0.625306)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = true
+tracks/3/enabled = true
+tracks/3/path = NodePath("OpenBookArmature/Skeleton3D:Spine2.R")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 7.95616e-07, -1.28052e-08, 0.170715, 0.985321)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = true
+tracks/4/enabled = true
+tracks/4/path = NodePath("OpenBookArmature/Skeleton3D:Spine3.R")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -1.58399e-07, -5.42833e-08, 0.110575, 0.993868)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = true
+tracks/5/enabled = true
+tracks/5/path = NodePath("OpenBookArmature/Skeleton3D:Spine1.L")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -0.625308, -0.33014, -0.330138, 0.625305)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = true
+tracks/6/enabled = true
+tracks/6/path = NodePath("OpenBookArmature/Skeleton3D:Spine2.L")
+tracks/6/interp = 0
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 7.02669e-07, 3.58742e-06, -0.170715, 0.985321)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = true
+tracks/7/enabled = true
+tracks/7/path = NodePath("OpenBookArmature/Skeleton3D:Spine3.L")
+tracks/7/interp = 0
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 1.70762e-07, -5.16583e-08, -0.110575, 0.993868)
+
+[sub_resource type="Animation" id="Animation_613i7"]
+resource_name = "C_balcony_bird_look_right"
+length = 0.0416667
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("OpenBookArmature/Skeleton3D:Root")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.0630212, -0.792049)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("OpenBookArmature/Skeleton3D:Root")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, -2.21972e-07, -2.21972e-07, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("OpenBookArmature/Skeleton3D:Spine1.R")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.625307, 0.330139, 0.330139, 0.625306)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = true
+tracks/3/enabled = true
+tracks/3/path = NodePath("OpenBookArmature/Skeleton3D:Spine2.R")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 7.95616e-07, -1.28052e-08, 0.170715, 0.985321)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = true
+tracks/4/enabled = true
+tracks/4/path = NodePath("OpenBookArmature/Skeleton3D:Spine3.R")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -1.58399e-07, -5.42833e-08, 0.110575, 0.993868)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = true
+tracks/5/enabled = true
+tracks/5/path = NodePath("OpenBookArmature/Skeleton3D:Spine1.L")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -0.625308, -0.33014, -0.330138, 0.625305)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = true
+tracks/6/enabled = true
+tracks/6/path = NodePath("OpenBookArmature/Skeleton3D:Spine2.L")
+tracks/6/interp = 0
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 7.02669e-07, 3.58742e-06, -0.170715, 0.985321)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = true
+tracks/7/enabled = true
+tracks/7/path = NodePath("OpenBookArmature/Skeleton3D:Spine3.L")
+tracks/7/interp = 0
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 1.70762e-07, -5.16583e-08, -0.110575, 0.993868)
+
+[sub_resource type="Animation" id="Animation_toxn2"]
+resource_name = "C_balcony_bird_look_up"
+length = 0.0416667
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("OpenBookArmature/Skeleton3D:Root")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.0630212, -0.792049)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("OpenBookArmature/Skeleton3D:Root")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, -2.21972e-07, -2.21972e-07, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("OpenBookArmature/Skeleton3D:Spine1.R")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.625307, 0.330139, 0.330139, 0.625306)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = true
+tracks/3/enabled = true
+tracks/3/path = NodePath("OpenBookArmature/Skeleton3D:Spine2.R")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 7.95616e-07, -1.28052e-08, 0.170715, 0.985321)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = true
+tracks/4/enabled = true
+tracks/4/path = NodePath("OpenBookArmature/Skeleton3D:Spine3.R")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -1.58399e-07, -5.42833e-08, 0.110575, 0.993868)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = true
+tracks/5/enabled = true
+tracks/5/path = NodePath("OpenBookArmature/Skeleton3D:Spine1.L")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -0.625308, -0.33014, -0.330138, 0.625305)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = true
+tracks/6/enabled = true
+tracks/6/path = NodePath("OpenBookArmature/Skeleton3D:Spine2.L")
+tracks/6/interp = 0
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 7.02669e-07, 3.58742e-06, -0.170715, 0.985321)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = true
+tracks/7/enabled = true
+tracks/7/path = NodePath("OpenBookArmature/Skeleton3D:Spine3.L")
+tracks/7/interp = 0
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 1.70762e-07, -5.16583e-08, -0.110575, 0.993868)
+
+[sub_resource type="Animation" id="Animation_2yk8o"]
+resource_name = "C_balcony_bird_look_up_del"
+length = 0.0416667
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("OpenBookArmature/Skeleton3D:Root")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.0630212, -0.792049)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("OpenBookArmature/Skeleton3D:Root")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, -2.21972e-07, -2.21972e-07, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("OpenBookArmature/Skeleton3D:Spine1.R")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.625307, 0.330139, 0.330139, 0.625306)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = true
+tracks/3/enabled = true
+tracks/3/path = NodePath("OpenBookArmature/Skeleton3D:Spine2.R")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 7.95616e-07, -1.28052e-08, 0.170715, 0.985321)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = true
+tracks/4/enabled = true
+tracks/4/path = NodePath("OpenBookArmature/Skeleton3D:Spine3.R")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -1.58399e-07, -5.42833e-08, 0.110575, 0.993868)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = true
+tracks/5/enabled = true
+tracks/5/path = NodePath("OpenBookArmature/Skeleton3D:Spine1.L")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -0.625308, -0.33014, -0.330138, 0.625305)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = true
+tracks/6/enabled = true
+tracks/6/path = NodePath("OpenBookArmature/Skeleton3D:Spine2.L")
+tracks/6/interp = 0
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 7.02669e-07, 3.58742e-06, -0.170715, 0.985321)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = true
+tracks/7/enabled = true
+tracks/7/path = NodePath("OpenBookArmature/Skeleton3D:Spine3.L")
+tracks/7/interp = 0
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 1.70762e-07, -5.16583e-08, -0.110575, 0.993868)
+
+[sub_resource type="Animation" id="Animation_ssoqp"]
+resource_name = "C_balcony_leg_swing"
+length = 1.66667
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("OpenBookArmature/Skeleton3D:Root")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.0630212, -0.792049)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("OpenBookArmature/Skeleton3D:Root")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, -2.21972e-07, -2.21972e-07, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("OpenBookArmature/Skeleton3D:Spine1.R")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.625307, 0.330139, 0.330139, 0.625306)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = true
+tracks/3/enabled = true
+tracks/3/path = NodePath("OpenBookArmature/Skeleton3D:Spine2.R")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 7.95616e-07, -1.28052e-08, 0.170715, 0.985321)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = true
+tracks/4/enabled = true
+tracks/4/path = NodePath("OpenBookArmature/Skeleton3D:Spine3.R")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -1.58399e-07, -5.42833e-08, 0.110575, 0.993868)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = true
+tracks/5/enabled = true
+tracks/5/path = NodePath("OpenBookArmature/Skeleton3D:Spine1.L")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -0.625308, -0.33014, -0.330138, 0.625305)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = true
+tracks/6/enabled = true
+tracks/6/path = NodePath("OpenBookArmature/Skeleton3D:Spine2.L")
+tracks/6/interp = 0
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 7.02669e-07, 3.58742e-06, -0.170715, 0.985321)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = true
+tracks/7/enabled = true
+tracks/7/path = NodePath("OpenBookArmature/Skeleton3D:Spine3.L")
+tracks/7/interp = 0
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 1.70762e-07, -5.16583e-08, -0.110575, 0.993868)
+
+[sub_resource type="Animation" id="Animation_wnach"]
+resource_name = "C_balcony_reading"
+length = 0.0416667
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("OpenBookArmature/Skeleton3D:Root")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.0630212, -0.792049)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("OpenBookArmature/Skeleton3D:Root")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, -2.21972e-07, -2.21972e-07, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("OpenBookArmature/Skeleton3D:Spine1.R")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.625307, 0.330139, 0.330139, 0.625306)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = true
+tracks/3/enabled = true
+tracks/3/path = NodePath("OpenBookArmature/Skeleton3D:Spine2.R")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 7.95616e-07, -1.28052e-08, 0.170715, 0.985321)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = true
+tracks/4/enabled = true
+tracks/4/path = NodePath("OpenBookArmature/Skeleton3D:Spine3.R")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -1.58399e-07, -5.42833e-08, 0.110575, 0.993868)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = true
+tracks/5/enabled = true
+tracks/5/path = NodePath("OpenBookArmature/Skeleton3D:Spine1.L")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -0.625308, -0.33014, -0.330138, 0.625305)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = true
+tracks/6/enabled = true
+tracks/6/path = NodePath("OpenBookArmature/Skeleton3D:Spine2.L")
+tracks/6/interp = 0
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 7.02669e-07, 3.58742e-06, -0.170715, 0.985321)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = true
+tracks/7/enabled = true
+tracks/7/path = NodePath("OpenBookArmature/Skeleton3D:Spine3.L")
+tracks/7/interp = 0
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 1.70762e-07, -5.16583e-08, -0.110575, 0.993868)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a4nya"]
+_data = {
+"00_RESET": SubResource("Animation_enl4x"),
+"C_Book_Reading": SubResource("Animation_qbyfo"),
+"C_balcony_bird_look_base": SubResource("Animation_owg24"),
+"C_balcony_bird_look_down": SubResource("Animation_21q8c"),
+"C_balcony_bird_look_left": SubResource("Animation_232hg"),
+"C_balcony_bird_look_right": SubResource("Animation_613i7"),
+"C_balcony_bird_look_up": SubResource("Animation_toxn2"),
+"C_balcony_bird_look_up_del": SubResource("Animation_2yk8o"),
+"C_balcony_leg_swing": SubResource("Animation_ssoqp"),
+"C_balcony_reading": SubResource("Animation_wnach")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eod64"]
+_data = {
+"C_Book_Close": ExtResource("10_hn73a"),
+"C_Book_PutDown": ExtResource("18_40lrd")
+}
+
+[node name="LevelCineBalcony" type="Node3D"]
+
+[node name="LevelBasics" parent="." instance=ExtResource("2_rgytu")]
+transform = Transform3D(-0.914477, -0.355001, -0.194184, -0.403742, 0.768585, 0.496256, -0.0269243, 0.532215, -0.846181, 0.979496, -9.53674e-07, 0.0222712)
+
+[node name="WorldEnvironment" parent="LevelBasics" index="0"]
+environment = SubResource("Environment_pd35j")
+
+[node name="OnLoadTriggerMainMenu" type="Node" parent="."]
+script = ExtResource("1_7l76o")
+
+[node name="princess_location_balcony" parent="." instance=ExtResource("1_tenyv")]
+transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0, 0, 0)
+
+[node name="LightmapGI" type="LightmapGI" parent="."]
+bias = 1.0
+texel_scale = 0.65
+environment_mode = 3
+environment_custom_color = Color(0.951477, 0.936348, 0.916981, 1)
+environment_custom_energy = 1.6
+light_data = ExtResource("3_qj78i")
+
+[node name="AirDustParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.23971, 4.24334, 0)
+material_override = SubResource("StandardMaterial3D_6oiyx")
+amount = 200
+lifetime = 5.0
+preprocess = 5.0
+process_material = SubResource("ParticleProcessMaterial_yfm3c")
+draw_pass_1 = SubResource("QuadMesh_53jl1")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(0.437435, 0.0118561, -0.899172, -0.00374673, 0.999928, 0.0113614, 0.899242, -0.00160113, 0.437448, 3.98672, 1.73576, -0.684901)
+
+[node name="CameraMenuAnim" type="Node3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, -7.45058e-09, 0, 1.11759e-08, 1, 0, 0, 0)
+script = ExtResource("2_36ksa")
+angle = 3
+lerp_duration = 1.0
+
+[node name="PhantomCamera3D" type="Node3D" parent="CameraPivot/CameraMenuAnim"]
+transform = Transform3D(1, -9.8953e-09, 2.68221e-07, -2.32831e-10, 1, 4.78816e-07, 2.98023e-08, 1.85682e-08, 1, 3.57628e-07, -1.19209e-07, 1.85793)
+script = ExtResource("4_pc7rb")
+priority = 1
+tween_resource = SubResource("Resource_w64ln")
+tween_on_load = false
+camera_3d_resource = ExtResource("6_omv4m")
+
+[node name="Cinematic_main_menu" type="Node3D" parent="."]
+script = ExtResource("7_adhuy")
+cinematic_name = "main_menu"
+cinematic_skipable = false
+cinematic_text_and_continue = false
+
+[node name="StepInit" type="Node" parent="Cinematic_main_menu"]
+script = ExtResource("8_65pa2")
+
+[node name="Snap_Player" type="Node" parent="Cinematic_main_menu/StepInit" node_paths=PackedStringArray("snap_to")]
+script = ExtResource("9_x1ovk")
+snap_to = NodePath("../..")
+
+[node name="Princess_Reading" type="Node" parent="Cinematic_main_menu/StepInit"]
+script = ExtResource("9_oomph")
+cinematic_name = "main_menu"
+
+[node name="Idle_Book_Reading" type="Node" parent="Cinematic_main_menu/StepInit" node_paths=PackedStringArray("anim_player")]
+script = ExtResource("8_f2gu0")
+anim_player = NodePath("../../../book/AnimationPlayer")
+play_anim = "C_Book_Reading"
+
+[node name="BalconyCameraZoomStart" type="Node3D" parent="."]
+transform = Transform3D(0.808766, 0.0366092, -0.586989, 0.00760866, 0.997326, 0.0726844, 0.588081, -0.0632509, 0.806325, 4.53962, 2.58112, -1.27844)
+script = ExtResource("4_pc7rb")
+tween_resource = SubResource("Resource_yl1hf")
+
+[node name="BalconyCameraPutDownBook" type="Node3D" parent="."]
+transform = Transform3D(0.35515, -0.215032, 0.909742, 0.00178442, 0.973338, 0.229368, -0.934808, -0.0798366, 0.346065, 8.40021, 2.84223, -3.84071)
+script = ExtResource("4_pc7rb")
+priority_override = true
+tween_resource = SubResource("Resource_n2f1v")
+
+[node name="BalconyCameraPutDownBook2" type="Node3D" parent="."]
+transform = Transform3D(0.538156, 0.106862, 0.836044, -0.0713316, 0.994146, -0.0811547, -0.839821, -0.0159624, 0.542628, 7.86876, 2.13838, -3.48814)
+script = ExtResource("4_pc7rb")
+priority_override = true
+tween_resource = SubResource("Resource_yl1hf")
+
+[node name="Cinematic_balcony_intro" type="Node3D" parent="."]
+script = ExtResource("7_adhuy")
+cinematic_name = "balcony_intro"
+cinematic_skipable = false
+cinematic_text_and_continue = false
+
+[node name="StepCameraZooms" type="Node" parent="Cinematic_balcony_intro"]
+script = ExtResource("8_65pa2")
+duration = 2.5
+
+[node name="Switch_Camera" type="Node" parent="Cinematic_balcony_intro/StepCameraZooms" node_paths=PackedStringArray("use_camera")]
+script = ExtResource("15_bdqay")
+use_camera = NodePath("../../../BalconyCameraZoomStart")
+
+[node name="StepCloseBook" type="Node" parent="Cinematic_balcony_intro"]
+script = ExtResource("8_65pa2")
+duration = 2.0
+
+[node name="Princess_Book_Close" type="Node" parent="Cinematic_balcony_intro/StepCloseBook"]
+script = ExtResource("9_oomph")
+cinematic_name = "balcony_intro"
+
+[node name="Book_Close" type="Node" parent="Cinematic_balcony_intro/StepCloseBook" node_paths=PackedStringArray("anim_player")]
+script = ExtResource("8_f2gu0")
+anim_player = NodePath("../../../book/AnimationPlayer")
+play_anim = "book/C_Book_Close"
+play_speed = 0.7
+
+[node name="StepPutDownBook" type="Node" parent="Cinematic_balcony_intro"]
+script = ExtResource("8_65pa2")
+duration = 0.2
+
+[node name="Princess_Book_Put_Down" type="Node" parent="Cinematic_balcony_intro/StepPutDownBook"]
+script = ExtResource("9_oomph")
+cinematic_name = "balcony_put_down_book"
+
+[node name="Book_PutDown" type="Node" parent="Cinematic_balcony_intro/StepPutDownBook" node_paths=PackedStringArray("anim_player")]
+script = ExtResource("8_f2gu0")
+anim_player = NodePath("../../../book/AnimationPlayer")
+play_anim = "book/C_Book_PutDown"
+
+[node name="Switch_Camera" type="Node" parent="Cinematic_balcony_intro/StepPutDownBook" node_paths=PackedStringArray("use_camera")]
+script = ExtResource("15_bdqay")
+use_camera = NodePath("../../../BalconyCameraPutDownBook")
+
+[node name="StepCameraMove" type="Node" parent="Cinematic_balcony_intro"]
+script = ExtResource("8_65pa2")
+
+[node name="Switch_Camera2" type="Node" parent="." node_paths=PackedStringArray("use_camera")]
+script = ExtResource("15_bdqay")
+use_camera = NodePath("../BalconyCameraPutDownBook2")
+
+[node name="book" parent="." instance=ExtResource("8_ona14")]
+transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0, 0, 0)
+
+[node name="Skeleton3D" parent="book/OpenBookArmature" index="0"]
+bones/0/position = Vector3(0, -0.0630212, -0.792049)
+bones/0/rotation = Quaternion(0.707107, -2.21972e-07, -2.21972e-07, 0.707107)
+bones/1/rotation = Quaternion(-0.625307, 0.330139, 0.330139, 0.625306)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/rotation = Quaternion(7.95616e-07, -1.28052e-08, 0.170715, 0.98532)
+bones/3/rotation = Quaternion(-1.58399e-07, -5.42833e-08, 0.110575, 0.993868)
+bones/4/rotation = Quaternion(-0.625308, -0.33014, -0.330138, 0.625305)
+bones/5/rotation = Quaternion(7.02669e-07, 3.58742e-06, -0.170715, 0.98532)
+bones/6/rotation = Quaternion(1.70762e-07, -5.16583e-08, -0.110575, 0.993868)
+
+[node name="AnimationPlayer" parent="book" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_a4nya"),
+"book": SubResource("AnimationLibrary_eod64")
+}
+
+[node name="Player" parent="." instance=ExtResource("7_rbl0w")]
+
+[editable path="LevelBasics"]
+[editable path="book"]

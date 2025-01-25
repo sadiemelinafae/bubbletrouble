@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b0umgd2uws7pk"]
+
+[resource]
+resource_name = "TerasseFloor"
+cull_mode = 2
+albedo_color = Color(0.627992, 0.698917, 0.622168, 1)
+roughness = 0.5

@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://deegue666yytu"]
+
+[ext_resource type="Shader" uid="uid://m1xem6nhbnq6" path="res://assets-3d/player/materials/cloth_coloring_shader.tres" id="1_q5p81"]
+[ext_resource type="Texture2D" uid="uid://bbvsxef8wf6tk" path="res://assets-3d/player/materials/Princess_dress.png" id="2_cpkmh"]
+
+[resource]
+resource_name = "Cloth"
+render_priority = 0
+shader = ExtResource("1_q5p81")
+shader_parameter/albedoR = Color(0.167746, 0.438281, 0.545569, 1)
+shader_parameter/albedoG = Color(0, 0, 0, 1)
+shader_parameter/albedoBlack = Color(0.19578, 0.393265, 0.518496, 1)
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/emission = Color(0.388891, 0.304097, 0.450931, 1)
+shader_parameter/emission_energy = 0.25
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("2_cpkmh")

@@ -1,0 +1,125 @@
+[gd_scene load_steps=14 format=3 uid="uid://b78seafeasc1k"]
+
+[ext_resource type="PackedScene" uid="uid://dvr2ry87h13j3" path="res://systems/enemies/enemy_base.tscn" id="1_t3l6b"]
+[ext_resource type="Script" path="res://systems/enemies/enemy_pathfinder.gd" id="2_4byr3"]
+[ext_resource type="PackedScene" uid="uid://bwpivficv0yrk" path="res://assets-3d/enemies/shroom_enemy_01.glb" id="2_pe6ll"]
+[ext_resource type="Texture2D" uid="uid://b4o2y0qnnnyid" path="res://assets/particles/clouds.png" id="3_mruah"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_achsg"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.45098, 0.286275, 0.141176, 0.207843)
+albedo_texture = ExtResource("3_mruah")
+uv1_scale = Vector3(0.435, 0.435, 0.435)
+uv1_offset = Vector3(0.575, 0, 0)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_gm2ls"]
+_data = [Vector2(0, 0), 0.0, 3.33919, 0, 0, Vector2(0.44186, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_lpolq"]
+curve = SubResource("Curve_gm2ls")
+
+[sub_resource type="Curve" id="Curve_nq4yr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.406593), -0.246536, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_swuw0"]
+curve = SubResource("Curve_nq4yr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_see08"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 5.4
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+scale_min = 0.7
+scale_curve = SubResource("CurveTexture_swuw0")
+alpha_curve = SubResource("CurveTexture_lpolq")
+
+[sub_resource type="QuadMesh" id="QuadMesh_64utp"]
+size = Vector2(3, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i2qd5"]
+size = Vector3(1.34, 1.345, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1f8p7"]
+radius = 0.8
+height = 1.6
+
+[node name="ShroomSpikey" instance=ExtResource("1_t3l6b")]
+hit_points = 5
+
+[node name="Movement" parent="Logic" index="0"]
+move_speed = 4.0
+
+[node name="Input" parent="Logic/Movement" index="0" node_paths=PackedStringArray("me", "navagent")]
+script = ExtResource("2_4byr3")
+me = NodePath("../../..")
+navagent = NodePath("../../../Zones/NavigationAgent3D")
+
+[node name="Surprised" parent="Logic/Actions" index="1"]
+time_surprised_wait = 0.3
+
+[node name="Dying" parent="Logic/Actions" index="4" node_paths=PackedStringArray("particle_effects")]
+particle_effects = [NodePath("../../../Model/ShroomSmoke")]
+
+[node name="Animation" parent="Logic" index="4" node_paths=PackedStringArray("animation_player")]
+animation_player = NodePath("../../Model/shroom_enemy_01/AnimationPlayer")
+idle_variations = Array[String](["Idle_01", "Idle_02", "Idle_03", "Idle_04"])
+animspeed_run = 0.5
+
+[node name="shroom_enemy_01" parent="Model" index="1" instance=ExtResource("2_pe6ll")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Model/shroom_enemy_01/ShroomEnemy01Skelet" index="0"]
+bones/0/rotation = Quaternion(0.707107, -5.33851e-08, -5.33851e-08, 0.707107)
+bones/1/rotation = Quaternion(-0.707107, 5.33439e-08, 5.33439e-08, 0.707107)
+bones/2/rotation = Quaternion(-0.048695, -2.83495e-12, 5.81884e-11, 0.998814)
+bones/3/rotation = Quaternion(-0.156071, -6.14811e-19, 3.83799e-18, 0.987746)
+bones/4/rotation = Quaternion(-0.105394, -2.53906e-23, 1.86676e-23, 0.994431)
+bones/5/rotation = Quaternion(-0.0218114, -0.0435364, 0.893005, -0.447405)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/rotation = Quaternion(-1.39789e-07, -1.24788e-07, -0.234445, 0.972129)
+bones/7/rotation = Quaternion(-3.72033e-07, 2.141e-07, -0.198422, 0.980117)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/rotation = Quaternion(-6.04369e-07, -9.30237e-08, -0.36068, 0.93269)
+bones/9/rotation = Quaternion(0.0218133, -0.0435374, 0.893005, 0.447404)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/rotation = Quaternion(8.9011e-07, 1.49007e-07, 0.234445, 0.972129)
+bones/11/rotation = Quaternion(3.71047e-07, 3.8056e-07, 0.198422, 0.980117)
+bones/11/scale = Vector3(1, 1, 1)
+bones/12/rotation = Quaternion(6.80338e-07, -3.02133e-07, 0.36068, 0.93269)
+bones/13/rotation = Quaternion(-0.640855, 0.640855, 0.298839, -0.298839)
+bones/13/scale = Vector3(1, 1, 1)
+bones/14/rotation = Quaternion(0.640855, 0.639817, 0.298839, 0.301055)
+bones/14/scale = Vector3(1, 1, 1)
+
+[node name="ShroomSmoke" type="GPUParticles3D" parent="Model" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56587, 0.195096)
+material_override = SubResource("StandardMaterial3D_achsg")
+amount = 30
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_see08")
+draw_pass_1 = SubResource("QuadMesh_64utp")
+
+[node name="KickBackZone2" type="Area3D" parent="Zones" index="5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Zones/KickBackZone2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.912439, -0.88307)
+shape = SubResource("BoxShape3D_i2qd5")
+
+[node name="Collider" type="CollisionShape3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("CapsuleShape3D_1f8p7")
+
+[editable path="Model/shroom_enemy_01"]

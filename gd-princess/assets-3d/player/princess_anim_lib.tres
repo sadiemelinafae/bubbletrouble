@@ -1,0 +1,116 @@
+[gd_resource type="AnimationLibrary" load_steps=56 format=3 uid="uid://unu4oal8b4hs"]
+
+[ext_resource type="Animation" uid="uid://duqmh5y1euq3p" path="res://assets-3d/player/animations/00_RESET.res" id="1_inwec"]
+[ext_resource type="Animation" uid="uid://dmxa2sbhbx5mu" path="res://assets-3d/player/animations/A_Jump_InAir_Squashed.res" id="2_0eskm"]
+[ext_resource type="Animation" uid="uid://bbhxg877tp8c4" path="res://assets-3d/player/animations/A_Jump_InAir_Stretched.res" id="3_pjaic"]
+[ext_resource type="Animation" uid="uid://bq417phcsu1qp" path="res://assets-3d/player/animations/A_Jump_InAir_Stretched_Down.res" id="4_mu7yc"]
+[ext_resource type="Animation" uid="uid://c822ibu5ivc64" path="res://assets-3d/player/animations/A_Jump_Land_Huge.res" id="5_d8y7e"]
+[ext_resource type="Animation" uid="uid://55o34cfr0sad" path="res://assets-3d/player/animations/A_Jump_Land_Small.res" id="6_fukc7"]
+[ext_resource type="Animation" uid="uid://qygi0wpie0jc" path="res://assets-3d/player/animations/A_Jump_Start.res" id="7_td0dx"]
+[ext_resource type="Animation" uid="uid://iw86r63ct1u" path="res://assets-3d/player/animations/A_Jump_Start_Orig.res" id="8_72c41"]
+[ext_resource type="Animation" uid="uid://ccifw8yrjwa40" path="res://assets-3d/player/animations/A_Kick.res" id="9_7ve1u"]
+[ext_resource type="Animation" uid="uid://cdjxpc7rw7iks" path="res://assets-3d/player/animations/A_Kick_Left.res" id="10_4a671"]
+[ext_resource type="Animation" uid="uid://xvlheju5h3dv" path="res://assets-3d/player/animations/A_Run_Accel_Back.res" id="11_5el2m"]
+[ext_resource type="Animation" uid="uid://dsoswscifxyf4" path="res://assets-3d/player/animations/A_Run_Accel_Front.res" id="12_lrr5g"]
+[ext_resource type="Animation" uid="uid://u7d8rn00egw" path="res://assets-3d/player/animations/A_Run_Accel_Left.res" id="13_3xoav"]
+[ext_resource type="Animation" uid="uid://c4pirub38ax0j" path="res://assets-3d/player/animations/A_Run_Accel_Right.res" id="14_sllg3"]
+[ext_resource type="Animation" uid="uid://bhu3ahdrp2x6a" path="res://assets-3d/player/animations/A_Run_Overlay.res" id="15_j7yvp"]
+[ext_resource type="Animation" uid="uid://clr43vsjd828y" path="res://assets-3d/player/animations/P_Arms_AtSide.res" id="16_qw8qn"]
+[ext_resource type="Animation" uid="uid://s4e2tfemn6g8" path="res://assets-3d/player/animations/P_Arms_Base.res" id="17_wxaoh"]
+[ext_resource type="Animation" uid="uid://sliw3sqo7nmv" path="res://assets-3d/player/animations/P_Face_A.res" id="18_nnxva"]
+[ext_resource type="Animation" uid="uid://bwwp8ewqtr7to" path="res://assets-3d/player/animations/P_Face_Base.res" id="19_okwu3"]
+[ext_resource type="Animation" uid="uid://b54ybus3gg0ya" path="res://assets-3d/player/animations/P_Face_Blink.res" id="20_b2h4b"]
+[ext_resource type="Animation" uid="uid://yk2gydrtjthu" path="res://assets-3d/player/animations/P_Face_BMP.res" id="21_gfr62"]
+[ext_resource type="Animation" uid="uid://dwhmljtn34rac" path="res://assets-3d/player/animations/P_Face_Happy.res" id="22_s3ljd"]
+[ext_resource type="Animation" uid="uid://drwlav6dx1rnq" path="res://assets-3d/player/animations/P_Face_O.res" id="23_cqibr"]
+[ext_resource type="Animation" uid="uid://b3ervvf6noq22" path="res://assets-3d/player/animations/P_Face_Serious.res" id="24_mg15p"]
+[ext_resource type="Animation" uid="uid://dd70tkmjekqei" path="res://assets-3d/player/animations/P_Face_Surprised.res" id="25_bpc6c"]
+[ext_resource type="Animation" uid="uid://i2pumhxsm5br" path="res://assets-3d/player/animations/P_Hands_Basic.res" id="26_bxfbr"]
+[ext_resource type="Animation" uid="uid://5rp84ktsecux" path="res://assets-3d/player/animations/P_Hooray.res" id="27_f5qdo"]
+[ext_resource type="Animation" uid="uid://vyk8pdl7xkr1" path="res://assets-3d/player/animations/A_Grab_Hang.res" id="28_78l3a"]
+[ext_resource type="Animation" uid="uid://dem75jlpi72cl" path="res://assets-3d/player/animations/A_Grab_Reach.res" id="29_idatr"]
+[ext_resource type="Animation" uid="uid://bdn8vcpv8dvgg" path="res://assets-3d/player/animations/A_Run.res" id="30_yq7ay"]
+[ext_resource type="Animation" uid="uid://dt8l87dnrrt3g" path="res://assets-3d/player/animations/C_balcony_reading.res" id="31_rrcrd"]
+[ext_resource type="Animation" uid="uid://5mkk0m4dvr15" path="res://assets-3d/player/animations/P_Bird_Folded.res" id="32_21vji"]
+[ext_resource type="Animation" uid="uid://btguiyv2e16jj" path="res://assets-3d/player/animations/P_Bird_SquishedDown.res" id="33_yi1x8"]
+[ext_resource type="Animation" uid="uid://baq7whq6wldfi" path="res://assets-3d/player/animations/A_Idle_Blink.res" id="34_8wmjx"]
+[ext_resource type="Animation" uid="uid://brnldesp5cje6" path="res://assets-3d/player/animations/A_Idle_Face_01.res" id="35_orfrm"]
+[ext_resource type="Animation" uid="uid://y5kwsuf58d2k" path="res://assets-3d/player/animations/Idle_Look_01.res" id="36_238y5"]
+[ext_resource type="Animation" uid="uid://dsh0tmawgms3d" path="res://assets-3d/player/animations/Idle_Look_Overlay_1_12.res" id="37_k3ccj"]
+[ext_resource type="Animation" uid="uid://dah5446p8xkcb" path="res://assets-3d/player/animations/P_Bird_Blink.res" id="38_iws4y"]
+[ext_resource type="Animation" uid="uid://byr46sisg4tm7" path="res://assets-3d/player/animations/P_Face_Smirk.res" id="39_xedga"]
+[ext_resource type="Animation" uid="uid://cother78k7m4d" path="res://assets-3d/player/animations/A_Idle_Arm_Swing.res" id="40_h0hep"]
+[ext_resource type="Animation" uid="uid://fsmqaslv1jae" path="res://assets-3d/player/animations/C_balcony_bird_look_base.res" id="41_hqm56"]
+[ext_resource type="Animation" uid="uid://hb5naiqimxtq" path="res://assets-3d/player/animations/C_balcony_bird_look_down.res" id="42_ub6k4"]
+[ext_resource type="Animation" uid="uid://c7oa7sn614h0n" path="res://assets-3d/player/animations/C_balcony_bird_look_left.res" id="43_uj057"]
+[ext_resource type="Animation" uid="uid://bbenm41v1vjya" path="res://assets-3d/player/animations/C_balcony_bird_look_right.res" id="44_fq5vo"]
+[ext_resource type="Animation" uid="uid://bu6pm2qkhj26h" path="res://assets-3d/player/animations/C_balcony_bird_look_up.res" id="45_xpedi"]
+[ext_resource type="Animation" uid="uid://ctfrh82nb65yh" path="res://assets-3d/player/animations/C_balcony_leg_swing.res" id="46_nm0rh"]
+[ext_resource type="Animation" uid="uid://ce121h1wjxh44" path="res://assets-3d/player/animations/A_Balcony_Princess_Idle.res" id="47_p5fsb"]
+[ext_resource type="Animation" uid="uid://dojqrggndj2u6" path="res://assets-3d/player/animations/C_Balcony_Princess_Eyes_Reading.res" id="48_i1lwp"]
+[ext_resource type="Animation" uid="uid://d1u2lrn3hvwtr" path="res://assets-3d/player/animations/C_Balcony_Princess_Face_Frown.res" id="49_j8pur"]
+[ext_resource type="Animation" uid="uid://bcvqbjayr5drs" path="res://assets-3d/player/animations/C_Balcony_Princess_Face_Oh.res" id="50_2db3e"]
+[ext_resource type="Animation" uid="uid://dm565gv8nwbot" path="res://assets-3d/player/animations/C_Balcony_Princess_Face_Smile.res" id="51_aunmx"]
+[ext_resource type="Animation" uid="uid://s5cdny4ajfjr" path="res://assets-3d/player/animations/C_balcony_bird_idle_flap.res" id="52_uatiw"]
+[ext_resource type="Animation" uid="uid://dqydcr1g2p3gq" path="res://assets-3d/player/animations/C_balcony_bird_idle_main.res" id="53_1xk4k"]
+[ext_resource type="Animation" uid="uid://bvy5c0nflxxyl" path="res://assets-3d/player/animations/C_balcony_collapse_book.res" id="54_2twy8"]
+[ext_resource type="Animation" uid="uid://cs7y7d03ailwu" path="res://assets-3d/player/animations/C_balcony_put_book.res" id="55_60032"]
+
+[resource]
+_data = {
+"00_RESET": ExtResource("1_inwec"),
+"A_Balcony_Princess_Idle": ExtResource("47_p5fsb"),
+"A_Grab_Hang": ExtResource("28_78l3a"),
+"A_Grab_Reach": ExtResource("29_idatr"),
+"A_Idle_Arm_Swing": ExtResource("40_h0hep"),
+"A_Idle_Blink": ExtResource("34_8wmjx"),
+"A_Idle_Face_01": ExtResource("35_orfrm"),
+"A_Jump_InAir_Squashed": ExtResource("2_0eskm"),
+"A_Jump_InAir_Stretched": ExtResource("3_pjaic"),
+"A_Jump_InAir_Stretched_Down": ExtResource("4_mu7yc"),
+"A_Jump_Land_Huge": ExtResource("5_d8y7e"),
+"A_Jump_Land_Small": ExtResource("6_fukc7"),
+"A_Jump_Start": ExtResource("7_td0dx"),
+"A_Jump_Start_Orig": ExtResource("8_72c41"),
+"A_Kick": ExtResource("9_7ve1u"),
+"A_Kick_Left": ExtResource("10_4a671"),
+"A_Run": ExtResource("30_yq7ay"),
+"A_Run_Accel_Back": ExtResource("11_5el2m"),
+"A_Run_Accel_Front": ExtResource("12_lrr5g"),
+"A_Run_Accel_Left": ExtResource("13_3xoav"),
+"A_Run_Accel_Right": ExtResource("14_sllg3"),
+"A_Run_Overlay": ExtResource("15_j7yvp"),
+"C_Balcony_Princess_Eyes_Reading": ExtResource("48_i1lwp"),
+"C_Balcony_Princess_Face_Frown": ExtResource("49_j8pur"),
+"C_Balcony_Princess_Face_Oh": ExtResource("50_2db3e"),
+"C_Balcony_Princess_Face_Smile": ExtResource("51_aunmx"),
+"C_balcony_bird_idle_flap": ExtResource("52_uatiw"),
+"C_balcony_bird_idle_main": ExtResource("53_1xk4k"),
+"C_balcony_bird_look_base": ExtResource("41_hqm56"),
+"C_balcony_bird_look_down": ExtResource("42_ub6k4"),
+"C_balcony_bird_look_left": ExtResource("43_uj057"),
+"C_balcony_bird_look_right": ExtResource("44_fq5vo"),
+"C_balcony_bird_look_up": ExtResource("45_xpedi"),
+"C_balcony_collapse_book": ExtResource("54_2twy8"),
+"C_balcony_leg_swing": ExtResource("46_nm0rh"),
+"C_balcony_put_book": ExtResource("55_60032"),
+"C_balcony_reading": ExtResource("31_rrcrd"),
+"Idle_Look_01": ExtResource("36_238y5"),
+"Idle_Look_Overlay_1_12": ExtResource("37_k3ccj"),
+"P_Arms_AtSide": ExtResource("16_qw8qn"),
+"P_Arms_Base": ExtResource("17_wxaoh"),
+"P_Bird_Blink": ExtResource("38_iws4y"),
+"P_Bird_Folded": ExtResource("32_21vji"),
+"P_Bird_SquishedDown": ExtResource("33_yi1x8"),
+"P_Face_A": ExtResource("18_nnxva"),
+"P_Face_BMP": ExtResource("21_gfr62"),
+"P_Face_Base": ExtResource("19_okwu3"),
+"P_Face_Blink": ExtResource("20_b2h4b"),
+"P_Face_Happy": ExtResource("22_s3ljd"),
+"P_Face_O": ExtResource("23_cqibr"),
+"P_Face_Serious": ExtResource("24_mg15p"),
+"P_Face_Smirk": ExtResource("39_xedga"),
+"P_Face_Surprised": ExtResource("25_bpc6c"),
+"P_Hands_Basic": ExtResource("26_bxfbr"),
+"P_Hooray": ExtResource("27_f5qdo")
+}

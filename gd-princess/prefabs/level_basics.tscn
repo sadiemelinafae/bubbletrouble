@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bd5ndkjed58yh"]
+
+[ext_resource type="Environment" uid="uid://drspbunqnfc5v" path="res://assets/world_env.tres" id="3_uldba"]
+
+[node name="LevelBasics" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_uldba")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.699685, -0.708413, 0.0926942, -0.206007, 0.324275, 0.923259, -0.684107, 0.626894, -0.372828, 0, 18.4786, 0)
+shadow_enabled = true
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.403077, 0.887856, -0.221902, -0.206007, 0.324275, 0.923259, 0.891678, -0.326431, 0.313613, 0, 18.4786, 0)
+light_energy = 0.2
+light_cull_mask = 4294966274

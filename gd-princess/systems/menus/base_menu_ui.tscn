@@ -1,0 +1,133 @@
+[gd_scene load_steps=10 format=3 uid="uid://d2by1bhaah44n"]
+
+[ext_resource type="PackedScene" uid="uid://dfbev1ixeqb5p" path="res://systems/menus/menu_bg.tscn" id="2_4myc6"]
+[ext_resource type="Script" path="res://systems/menus/menu_container.gd" id="2_5iepn"]
+[ext_resource type="Script" path="res://systems/menus/maaack/scripts/capture_focus.gd" id="2_wot2h"]
+[ext_resource type="PackedScene" uid="uid://c8vnncjwqcpab" path="res://systems/menus/maaack/scenes/menus/options_menu/audio/audio_options_menu.tscn" id="3_642ig"]
+[ext_resource type="Script" path="res://systems/menus/btn_continue.gd" id="3_sy75v"]
+[ext_resource type="Script" path="res://systems/menus/btn_exit_game.gd" id="4_7rsme"]
+[ext_resource type="PackedScene" uid="uid://b2numvphf2kau" path="res://systems/menus/maaack/scenes/menus/options_menu/video/video_options_menu.tscn" id="4_vvn0y"]
+[ext_resource type="Script" path="res://systems/menus/btn_to_menu.gd" id="5_vga8g"]
+[ext_resource type="Script" path="res://systems/menus/btn_to_previous_menu.gd" id="8_yek3w"]
+
+[node name="PauseMenuUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menus" type="Control" parent="." node_paths=PackedStringArray("main_menu", "options_menu")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5iepn")
+main_menu = NodePath("PauseMenuMain")
+options_menu = NodePath("OptionsMenu")
+
+[node name="PauseMenuMain" type="Control" parent="Menus"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseMenuBg" parent="Menus/PauseMenuMain" instance=ExtResource("2_4myc6")]
+layout_mode = 1
+
+[node name="PauseMenuMainButtons" type="VBoxContainer" parent="Menus/PauseMenuMain"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.5
+offset_top = -128.0
+offset_right = 128.5
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+script = ExtResource("2_wot2h")
+enabled = true
+
+[node name="TitlePaused" type="Label" parent="Menus/PauseMenuMain/PauseMenuMainButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Game Paused"
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="Menus/PauseMenuMain/PauseMenuMainButtons"]
+layout_mode = 2
+text = "Continue"
+script = ExtResource("3_sy75v")
+
+[node name="OptionsButton" type="Button" parent="Menus/PauseMenuMain/PauseMenuMainButtons" node_paths=PackedStringArray("menu_container")]
+layout_mode = 2
+text = "Options"
+script = ExtResource("5_vga8g")
+menu_container = NodePath("../../..")
+goto_menu_id = "options"
+
+[node name="ExitButton" type="Button" parent="Menus/PauseMenuMain/PauseMenuMainButtons"]
+layout_mode = 2
+text = "Exit Game"
+script = ExtResource("4_7rsme")
+
+[node name="MainMenuButton" type="Button" parent="Menus/PauseMenuMain/PauseMenuMainButtons"]
+visible = false
+layout_mode = 2
+text = "Main Menu"
+
+[node name="OptionsMenu" type="Control" parent="Menus"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseMenuBg" parent="Menus/OptionsMenu" instance=ExtResource("2_4myc6")]
+layout_mode = 1
+
+[node name="OptionsMenuButtons" type="VBoxContainer" parent="Menus/OptionsMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -65.5
+offset_right = 200.0
+offset_bottom = 65.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("2_wot2h")
+enabled = true
+
+[node name="TitleOptions" type="Label" parent="Menus/OptionsMenu/OptionsMenuButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Options"
+horizontal_alignment = 1
+
+[node name="Audio" parent="Menus/OptionsMenu/OptionsMenuButtons" instance=ExtResource("3_642ig")]
+layout_mode = 2
+
+[node name="Video" parent="Menus/OptionsMenu/OptionsMenuButtons" instance=ExtResource("4_vvn0y")]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="Menus/OptionsMenu/OptionsMenuButtons" node_paths=PackedStringArray("menu_container")]
+layout_mode = 2
+text = "Back"
+script = ExtResource("8_yek3w")
+menu_container = NodePath("../../..")

@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bxgyamqrdkc6h"]
+
+[resource]
+resource_name = "CastleWall"
+cull_mode = 2
+diffuse_mode = 3
+albedo_color = Color(0.516614, 0.583242, 0.513976, 1)
+roughness = 0.5
+emission_enabled = true
+emission = Color(0.0375546, 0.0966891, 0.179193, 1)

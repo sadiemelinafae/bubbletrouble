@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ct7tvs5qk0f5m"]
+
+[resource]
+resource_name = "Flower"
+cull_mode = 2
+diffuse_mode = 3
+disable_ambient_light = true
+albedo_color = Color(0, 0.794586, 0.564726, 1)
+metallic = 1.0
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.11

@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1xrijeuailbl"]
+
+[ext_resource type="PackedScene" uid="uid://5hsqcphr46sw" path="res://assets-3d/level_cave_testing.glb" id="1_qqcyl"]
+[ext_resource type="PackedScene" uid="uid://bd5ndkjed58yh" path="res://prefabs/level_basics.tscn" id="2_yasiu"]
+[ext_resource type="PackedScene" uid="uid://do8oktmypbpo0" path="res://prefabs/player.tscn" id="3_72abv"]
+[ext_resource type="PackedScene" uid="uid://b78seafeasc1k" path="res://prefabs/shroom_spikey.tscn" id="4_srxjn"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ib0cd"]
+vertices = PackedVector3Array(-24.0716, 0.5, -24.0716, -24.0716, 0.5, 24.1784, 24.1784, 0.5, 24.1784, 24.1784, 0.5, -24.0716)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+geometry_parsed_geometry_type = 1
+agent_height = 2.0
+agent_radius = 1.0
+
+[node name="LevelCaveTesting" type="Node3D"]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_ib0cd")
+
+[node name="level_cave_testing" parent="NavigationRegion3D" instance=ExtResource("1_qqcyl")]
+
+[node name="LevelBasics" parent="." instance=ExtResource("2_yasiu")]
+
+[node name="Player" parent="." instance=ExtResource("3_72abv")]
+
+[node name="ShroomSpikey" parent="." instance=ExtResource("4_srxjn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)

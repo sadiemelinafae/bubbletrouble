@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://crqx1enddjc2s"]
+
+[ext_resource type="Shader" path="res://materials/_shaders/instance_color_varied.gdshader" id="1_18mbk"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_18mbk")
+shader_parameter/A = Color(0.590752, 0.687134, 0.573321, 1)
+shader_parameter/B = Color(0.887455, 0.79812, 0.74611, 1)
+shader_parameter/multiply = Color(0.955963, 0.955963, 0.955963, 1)
+shader_parameter/emit = Color(0.149167, 0.0872207, 0.0517985, 1)

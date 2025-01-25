@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cny6p4s16g0ae"]
+
+[ext_resource type="Texture2D" uid="uid://c4aoxp5jkqu7a" path="res://assets-3d/player/materials/BirdTexture.png" id="1_f15p7"]
+
+[resource]
+resource_name = "BirdPetEyes"
+cull_mode = 2
+albedo_texture = ExtResource("1_f15p7")
+roughness = 0.0

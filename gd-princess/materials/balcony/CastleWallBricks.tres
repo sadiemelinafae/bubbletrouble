@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bbrcbnus6jarm"]
+
+[ext_resource type="Shader" path="res://materials/_shaders/instance_color_varied.gdshader" id="1_upot6"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_upot6")
+shader_parameter/A = Color(0.528703, 0.630628, 0.404053, 1)
+shader_parameter/B = Color(0.475025, 0.597902, 0.547795, 1)
+shader_parameter/multiply = Color(1, 1, 1, 1)
+shader_parameter/emit = Color(0.311144, 0.410784, 0.456436, 1)

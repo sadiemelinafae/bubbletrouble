@@ -1,0 +1,28 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://rh7dw51b0kx0"]
+
+[ext_resource type="Shader" path="res://materials/_shaders/shaded_globalnoise_toon.gdshader" id="1_u0tcx"]
+[ext_resource type="Texture2D" uid="uid://cj2guey3v321o" path="res://materials/_noise/rock_grudge_albedo.png" id="2_fsw0u"]
+[ext_resource type="Texture2D" uid="uid://d0clrb46o046u" path="res://materials/_parameters/ToonShaderCurve.tres" id="3_jelgv"]
+
+[sub_resource type="Gradient" id="Gradient_mp802"]
+offsets = PackedFloat32Array(0.342776, 0.399433)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ysvo1"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d3jts"]
+seamless = true
+color_ramp = SubResource("Gradient_mp802")
+noise = SubResource("FastNoiseLite_ysvo1")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_u0tcx")
+shader_parameter/A = Color(0.735352, 0.707764, 0.609629, 1)
+shader_parameter/B = Color(0.593624, 0.523179, 0.406005, 1)
+shader_parameter/scale = 2.5
+shader_parameter/NoiseColor = Color(0.575585, 0.459234, 0.377257, 1)
+shader_parameter/NoiseScale = 15.0
+shader_parameter/multiply = Color(1, 0.859, 0.82, 1)
+shader_parameter/Tex = SubResource("NoiseTexture2D_d3jts")
+shader_parameter/Noise = ExtResource("2_fsw0u")
+shader_parameter/cell_shading_diffuse_curve = ExtResource("3_jelgv")

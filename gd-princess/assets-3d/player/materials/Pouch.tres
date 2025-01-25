@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dl62fhrnokoub"]
+
+[resource]
+resource_name = "Pouch"
+cull_mode = 2
+diffuse_mode = 3
+disable_ambient_light = true
+albedo_color = Color(0.987698, 0.859723, 0.814168, 1)
+emission_enabled = true
+emission = Color(0.60064, 0.0917898, 0.265474, 1)

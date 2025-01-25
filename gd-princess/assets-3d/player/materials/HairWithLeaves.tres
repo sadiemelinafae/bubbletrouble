@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://ck3euccahkmif"]
+
+[ext_resource type="Shader" path="res://materials/_shaders/tree_leaves.gdshader" id="1_uwrdc"]
+[ext_resource type="Texture2D" uid="uid://bddme2ml8yo47" path="res://materials/grasses/grasses.png" id="2_hdfoi"]
+[ext_resource type="Texture2D" uid="uid://bnq3xqd5d6e0g" path="res://materials/treeleaves/wind_noise.tres" id="3_jglhu"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_uwrdc")
+shader_parameter/A = Color(0.595697, 0.24634, 0.244921, 1)
+shader_parameter/B = Color(0.532573, 0.160467, 0.106696, 1)
+shader_parameter/multiply = Color(1, 1, 1, 1)
+shader_parameter/emit = Color(0, 0, 0, 1)
+shader_parameter/metalic = 0.44
+shader_parameter/roughness = 1.0
+shader_parameter/leaf_expansion = 0.23
+shader_parameter/wind_speed = 20.0
+shader_parameter/wind_scale = 200.0
+shader_parameter/wind_strength = 0.0
+shader_parameter/Texture = ExtResource("2_hdfoi")
+shader_parameter/WindNoise = ExtResource("3_jglhu")

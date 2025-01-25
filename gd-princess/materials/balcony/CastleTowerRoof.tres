@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dv0w06jbsslu3"]
+
+[resource]
+resource_name = "CastleTowerRoof"
+cull_mode = 2
+diffuse_mode = 3
+albedo_color = Color(0.44563, 0.533278, 0.538873, 1)
+emission_enabled = true
+emission = Color(0.0799604, 0.122131, 0.19717, 1)

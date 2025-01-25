@@ -1,0 +1,39 @@
+[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://bgnnv36q34h8r"]
+
+[ext_resource type="Shader" path="res://materials/_shaders/shaded_globalnoise_toon.gdshader" id="1_1pwae"]
+[ext_resource type="Texture2D" uid="uid://d0clrb46o046u" path="res://materials/_parameters/ToonShaderCurve.tres" id="2_fhdls"]
+
+[sub_resource type="Gradient" id="Gradient_xa3ak"]
+offsets = PackedFloat32Array(0.467422, 0.504249)
+colors = PackedColorArray(0, 0, 0, 1, 0.439457, 0.439457, 0.439457, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_g3irq"]
+noise_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_e58ab"]
+seamless = true
+color_ramp = SubResource("Gradient_xa3ak")
+noise = SubResource("FastNoiseLite_g3irq")
+
+[sub_resource type="Gradient" id="Gradient_fyyda"]
+offsets = PackedFloat32Array(0.342776, 0.549575)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ysvo1"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7w2ac"]
+seamless = true
+color_ramp = SubResource("Gradient_fyyda")
+noise = SubResource("FastNoiseLite_ysvo1")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_1pwae")
+shader_parameter/A = Color(0.548073, 0.458823, 0.389522, 1)
+shader_parameter/B = Color(0.478893, 0.381895, 0.322349, 1)
+shader_parameter/scale = 2.783
+shader_parameter/NoiseColor = Color(0.582345, 0.525971, 0.479408, 1)
+shader_parameter/NoiseScale = 15.57
+shader_parameter/multiply = Color(1, 1, 1, 1)
+shader_parameter/Tex = SubResource("NoiseTexture2D_7w2ac")
+shader_parameter/Noise = SubResource("NoiseTexture2D_e58ab")
+shader_parameter/cell_shading_diffuse_curve = ExtResource("2_fhdls")

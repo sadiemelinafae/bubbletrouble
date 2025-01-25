@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://gqip0phdhloi"]
+
+[resource]
+resource_name = "BalconyRailingStone"
+cull_mode = 2
+albedo_color = Color(0.758851, 0.73084, 0.62055, 1)
+emission_enabled = true
+emission = Color(0.407083, 0.190327, 0.150854, 1)

@@ -1,0 +1,128 @@
+[gd_scene load_steps=20 format=3 uid="uid://dvr2ry87h13j3"]
+
+[ext_resource type="PackedScene" uid="uid://bjwvemcer5vti" path="res://systems/characterbase/character.tscn" id="1_uthyi"]
+[ext_resource type="Script" path="res://systems/enemies/enemy.gd" id="2_t6jhn"]
+[ext_resource type="PackedScene" uid="uid://bgwpa4yyn30oe" path="res://assets-3d/enemies/vision_range.glb" id="3_3amtb"]
+[ext_resource type="Script" path="res://systems/enemies/actions/enemyai_idle.gd" id="3_8lcvy"]
+[ext_resource type="Script" path="res://systems/enemies/enemy_vision.gd" id="3_ado85"]
+[ext_resource type="Script" path="res://systems/enemies/enemy_vision_memory.gd" id="3_mm1j5"]
+[ext_resource type="Script" path="res://systems/enemies/actions/enemyai_move_to_engage.gd" id="4_acbcg"]
+[ext_resource type="Script" path="res://systems/enemies/actions/enemyai_surprised.gd" id="5_yvl1q"]
+[ext_resource type="Script" path="res://systems/enemies/actions/enemyai_playermissing.gd" id="6_rek5c"]
+[ext_resource type="Script" path="res://systems/enemies/enemy_animation.gd" id="7_77xkr"]
+[ext_resource type="Script" path="res://systems/enemies/actions/enemyai_dying.gd" id="8_aqvyl"]
+[ext_resource type="Texture2D" uid="uid://bnvwp7qvhya0n" path="res://materials/treeleaves/tree_leaves_3.png" id="13_cfhxg"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_f62fp"]
+points = PackedVector3Array(-17.7652, -38.9335, -83.6297, -9.38205, -19.5927, -29.5022, -25.5215, -18.8128, -30.697, -50.0246, -27.4164, -61.3698, -17.7652, 24.8038, -83.6297, 17.7456, -38.9335, -83.6297, 9.37227, -19.5927, -29.5022, -1.00871, -0.245663, -0.0242386, -28.5966, -3.92665, -7.9134, -39.3106, -18.6381, -34.6416, -50.0246, 10.0986, -61.3698, -28.5966, 0.827442, -7.9134, -1.00871, 0.234737, -0.0242386, 17.7456, 24.8038, -83.6297, 50.0246, 10.0986, -61.3698, 50.0148, -27.4164, -61.3698, 25.502, -18.8128, -30.697, 0.998932, -0.245663, -0.0242386, 28.5869, -3.92665, -7.9134, 0.998932, 0.234737, -0.0242386, 28.5869, 0.827442, -7.9134, 39.3008, -18.6381, -34.6416)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8j2cw"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.397858, 0.0716398, 0.226178, 0.709804)
+albedo_texture = ExtResource("13_cfhxg")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="Curve" id="Curve_wuq7r"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ebpxf"]
+curve = SubResource("Curve_wuq7r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gyo0k"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+inherit_velocity_ratio = 0.3
+spread = 180.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.3
+alpha_curve = SubResource("CurveTexture_ebpxf")
+
+[sub_resource type="QuadMesh" id="QuadMesh_bfo5v"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_v8l58"]
+radius = 10.0
+
+[node name="EnemyBase" instance=ExtResource("1_uthyi")]
+script = ExtResource("2_t6jhn")
+idle_action = 0
+hit_points = 1
+kickback_force_impact = 70.0
+
+[node name="Actions" type="Node" parent="Logic" index="3"]
+
+[node name="Idle" type="Node" parent="Logic/Actions" index="0" node_paths=PackedStringArray("me")]
+script = ExtResource("3_8lcvy")
+me = NodePath("../../..")
+
+[node name="Surprised" type="Node" parent="Logic/Actions" index="1" node_paths=PackedStringArray("me", "cry_area")]
+script = ExtResource("5_yvl1q")
+me = NodePath("../../..")
+cry_area = NodePath("../../../Zones/CallForHelpArea")
+
+[node name="MoveToEngage" type="Node" parent="Logic/Actions" index="2" node_paths=PackedStringArray("me")]
+script = ExtResource("4_acbcg")
+me = NodePath("../../..")
+
+[node name="PlayerMissing" type="Node" parent="Logic/Actions" index="3" node_paths=PackedStringArray("me")]
+script = ExtResource("6_rek5c")
+me = NodePath("../../..")
+
+[node name="Dying" type="Node" parent="Logic/Actions" index="4" node_paths=PackedStringArray("me", "death_particles")]
+script = ExtResource("8_aqvyl")
+me = NodePath("../../..")
+death_particles = NodePath("../../../Zones/GPUParticles3D")
+
+[node name="Animation" type="Node" parent="Logic" index="4" node_paths=PackedStringArray("me")]
+script = ExtResource("7_77xkr")
+me = NodePath("../..")
+
+[node name="VisionCheck" type="Node" parent="Logic" index="5" node_paths=PackedStringArray("me", "timer", "vision_origin", "area", "ray")]
+script = ExtResource("3_ado85")
+me = NodePath("../..")
+timer = NodePath("VisionCheckInterval")
+vision_origin = NodePath("../../Zones/VisionRayOrigin")
+area = NodePath("../../Model/VisionArea")
+ray = NodePath("../../Zones/VisionRayOrigin/VisionLineOfSight")
+
+[node name="VisionCheckInterval" type="Timer" parent="Logic/VisionCheck" index="0"]
+wait_time = 0.25
+autostart = true
+
+[node name="VisionMemory" type="Node" parent="Logic/VisionCheck" index="1" node_paths=PackedStringArray("me")]
+script = ExtResource("3_mm1j5")
+me = NodePath("../../..")
+memory_duration = 20.0
+
+[node name="VisionArea" type="Area3D" parent="Model" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.179, 0)
+
+[node name="VisionShape" type="CollisionShape3D" parent="Model/VisionArea" index="0"]
+shape = SubResource("ConvexPolygonShape3D_f62fp")
+
+[node name="DEBUG_VisionShape" parent="Model/VisionArea" index="1" instance=ExtResource("3_3amtb")]
+visible = false
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Zones" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90019, 0)
+material_override = SubResource("StandardMaterial3D_8j2cw")
+emitting = false
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_gyo0k")
+draw_pass_1 = SubResource("QuadMesh_bfo5v")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Zones" index="2"]
+
+[node name="CallForHelpArea" type="Area3D" parent="Zones" index="3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Zones/CallForHelpArea" index="0"]
+shape = SubResource("SphereShape3D_v8l58")
+
+[node name="VisionRayOrigin" type="Node3D" parent="Zones" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.179, 0)
+
+[node name="VisionLineOfSight" type="RayCast3D" parent="Zones/VisionRayOrigin" index="0"]
+debug_shape_custom_color = Color(1, 0, 0, 1)

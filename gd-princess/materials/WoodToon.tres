@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://daovleyrdqbjh"]
+
+[ext_resource type="Shader" path="res://materials/_shaders/shaded_flat_color_toon.gdshader" id="1_513gw"]
+[ext_resource type="Texture2D" uid="uid://d0clrb46o046u" path="res://materials/_parameters/ToonShaderCurve.tres" id="2_q3hab"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_513gw")
+shader_parameter/color = Color(0.473757, 0.307743, 0.193647, 1)
+shader_parameter/metalic = 0.7
+shader_parameter/roughness = 1.0
+shader_parameter/light_factor = 4.3
+shader_parameter/cell_shading_diffuse_curve = ExtResource("2_q3hab")

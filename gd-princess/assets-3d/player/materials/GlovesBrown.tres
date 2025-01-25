@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b1mhexa60ds56"]
+
+[resource]
+resource_name = "GlovesBrown"
+cull_mode = 2
+diffuse_mode = 3
+disable_ambient_light = true
+albedo_color = Color(0.798156, 0.325594, 0.250251, 1)

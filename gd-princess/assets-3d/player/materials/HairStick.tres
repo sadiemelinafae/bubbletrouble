@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bhngyfycbkqxu"]
+
+[resource]
+resource_name = "HairStick"
+cull_mode = 2
+albedo_color = Color(0.34964, 0.424723, 0.284837, 1)

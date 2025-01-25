@@ -1,0 +1,17 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://drspbunqnfc5v"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rpboe"]
+sky_top_color = Color(0.260303, 0.448124, 0.724746, 1)
+ground_bottom_color = Color(0.810011, 0.715843, 0.556064, 1)
+
+[sub_resource type="Sky" id="Sky_hc2wh"]
+sky_material = SubResource("ProceduralSkyMaterial_rpboe")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_hc2wh")
+ambient_light_source = 2
+ambient_light_color = Color(0.93845, 0.93845, 0.93845, 1)
+ssao_enabled = true
+ssao_radius = 1.94
+ssao_intensity = 1.47

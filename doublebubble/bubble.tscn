@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://cxfwin6k3cpvy"]
+
+[ext_resource type="Material" uid="uid://ciksn00yo5xff" path="res://caustics.tres" id="1_ekf1w"]
+[ext_resource type="Script" path="res://bubble.gd" id="1_qpe8i"]
+[ext_resource type="Script" path="res://collision_shape_3d.gd" id="3_agahs"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_biqt1"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jtfyv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2f85i"]
+next_pass = ExtResource("1_ekf1w")
+transparency = 1
+depth_draw_mode = 1
+no_depth_test = true
+albedo_color = Color(0.41, 0.596833, 1, 0.396078)
+metallic = 0.05
+roughness = 0.0
+refraction_scale = 0.57
+refraction_texture = SubResource("NoiseTexture2D_jtfyv")
+proximity_fade_distance = 507.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yl0m3"]
+
+[node name="StaticBody3D" type="Area3D"]
+script = ExtResource("1_qpe8i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("SphereMesh_biqt1")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_2f85i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("SphereShape3D_yl0m3")
+script = ExtResource("3_agahs")

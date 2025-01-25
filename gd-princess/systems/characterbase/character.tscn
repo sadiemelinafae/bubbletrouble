@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://bjwvemcer5vti"]
+
+[ext_resource type="Script" path="res://systems/characterbase/character.gd" id="1_3mkkt"]
+[ext_resource type="Script" path="res://systems/characterbase/character_movement.gd" id="1_smqnr"]
+[ext_resource type="Script" path="res://systems/characterbase/character_movement_input_provider.gd" id="3_8jrg1"]
+[ext_resource type="Script" path="res://systems/characterbase/character_fix_rotation.gd" id="4_7v087"]
+[ext_resource type="Script" path="res://systems/characterbase/character_kickback.gd" id="5_cxjlo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i2qd5"]
+size = Vector3(1.34, 1.345, 1)
+
+[node name="Character" type="CharacterBody3D" node_paths=PackedStringArray("move_control", "model", "kickback")]
+script = ExtResource("1_3mkkt")
+move_control = NodePath("Logic/Movement")
+model = NodePath("Model")
+kickback = NodePath("Logic/Kickback")
+
+[node name="Logic" type="Node" parent="."]
+
+[node name="Movement" type="Node" parent="Logic" node_paths=PackedStringArray("me", "input_provider")]
+script = ExtResource("1_smqnr")
+me = NodePath("../..")
+input_provider = NodePath("Input")
+
+[node name="Input" type="Node" parent="Logic/Movement"]
+script = ExtResource("3_8jrg1")
+
+[node name="FixRotation" type="Node" parent="Logic" node_paths=PackedStringArray("me")]
+script = ExtResource("4_7v087")
+me = NodePath("../..")
+
+[node name="Kickback" type="Node" parent="Logic" node_paths=PackedStringArray("me", "kill_zone")]
+script = ExtResource("5_cxjlo")
+me = NodePath("../..")
+kill_zone = NodePath("../../Zones/KickBackZone")
+
+[node name="Model" type="Node3D" parent="."]
+
+[node name="Zones" type="Node3D" parent="."]
+
+[node name="KickBackZone" type="Area3D" parent="Zones"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Zones/KickBackZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.912439, -0.88307)
+shape = SubResource("BoxShape3D_i2qd5")

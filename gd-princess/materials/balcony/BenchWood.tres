@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://m65q1wk1fukw"]
+
+[resource]
+resource_name = "BenchWood"
+cull_mode = 2
+albedo_color = Color(0.511354, 0.370191, 0.325379, 1)
+metallic = 0.656566

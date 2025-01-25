@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://c2byw1e1j1u7d"]
+
+[ext_resource type="Shader" path="res://materials/_shaders/tree_leaves.gdshader" id="1_tcmgw"]
+[ext_resource type="Texture2D" uid="uid://bnvwp7qvhya0n" path="res://materials/treeleaves/tree_leaves_3.png" id="2_aoftx"]
+[ext_resource type="Texture2D" uid="uid://bnq3xqd5d6e0g" path="res://materials/treeleaves/wind_noise.tres" id="3_5mnu0"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_tcmgw")
+shader_parameter/A = Color(0.405934, 0.350289, 0.0990832, 1)
+shader_parameter/B = Color(0.313489, 0.127411, 0.0673768, 1)
+shader_parameter/multiply = Color(1, 1, 1, 1)
+shader_parameter/emit = Color(0, 0, 0, 1)
+shader_parameter/metalic = 0.44
+shader_parameter/roughness = 1.0
+shader_parameter/leaf_expansion = 0.87
+shader_parameter/wind_speed = 20.0
+shader_parameter/wind_scale = 200.0
+shader_parameter/wind_strength = 0.3
+shader_parameter/Texture = ExtResource("2_aoftx")
+shader_parameter/WindNoise = ExtResource("3_5mnu0")

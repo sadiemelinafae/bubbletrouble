@@ -1,0 +1,43 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://bgwpa4yyn30oe"
+path="res://.godot/imported/vision_range.glb-80b78d4804cb9197948ef7dec47eeb22.scn"
+
+[deps]
+
+source_file="res://assets-3d/enemies/vision_range.glb"
+dest_files=["res://.godot/imported/vision_range.glb-80b78d4804cb9197948ef7dec47eeb22.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"materials": {
+"VisionRange": {
+"use_external/enabled": true,
+"use_external/path": "res://assets-3d/enemies/vision_range.tres"
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

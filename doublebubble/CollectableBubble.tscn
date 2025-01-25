@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://y0xrcba0snxy"]
+
+[ext_resource type="Script" path="res://collectable_bubble.gd" id="1_f67o3"]
+[ext_resource type="Material" uid="uid://ciksn00yo5xff" path="res://caustics.tres" id="1_yin4d"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_b0vow"]
+radius = 10.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jtfyv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tills"]
+next_pass = ExtResource("1_yin4d")
+transparency = 1
+depth_draw_mode = 1
+no_depth_test = true
+albedo_color = Color(0.41, 0.596833, 1, 0.396078)
+metallic = 0.05
+roughness = 0.0
+refraction_scale = 0.57
+refraction_texture = SubResource("NoiseTexture2D_jtfyv")
+proximity_fade_distance = 507.25
+
+[sub_resource type="SphereMesh" id="SphereMesh_bf4uu"]
+material = SubResource("StandardMaterial3D_tills")
+radius = 5.0
+height = 10.0
+
+[node name="CollectableBubble" type="Area3D" groups=["collectables"]]
+script = ExtResource("1_f67o3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_b0vow")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_bf4uu")
+skeleton = NodePath("../CollisionShape3D")

@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://ciksn00yo5xff"]
+
+[ext_resource type="Shader" path="res://caustices.gdshader" id="1_ni5l1"]
+
+[sub_resource type="Gradient" id="Gradient_0vps2"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_05bqa"]
+gradient = SubResource("Gradient_0vps2")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ni5l1")
+shader_parameter/color_ramp = SubResource("GradientTexture2D_05bqa")
